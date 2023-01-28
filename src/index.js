@@ -32,12 +32,15 @@ function* fetchAllMovies() {
     }
         
 }
-function* fetchMovieDescription() {
+function* fetchMovieDescription(action) {
     // GET movie description from db
+
     try{
+        const idToSearch = action.payload;
         const response = yield axios({
             method: 'GET',
-            url: '/api/movie/details'
+            url: '/api/movie/details/',
+            data: {idToSearch}
         })
         yield put({
           type: 'SET_DESCRIPTION_REDUCER', 
@@ -52,6 +55,15 @@ function* fetchMovieDescription() {
 const movies = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIES':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+const movieDescription = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_DESCRIPTION_REDUCER':
             return action.payload;
         default:
             return state;
@@ -73,6 +85,7 @@ const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
+        movieDescription
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

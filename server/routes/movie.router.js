@@ -17,8 +17,9 @@ router.get('/', (req, res) => {
 });
 
 // GET for movie description
-router.get('/details/:id', (req, res) => {
-  const movieId = req.params.id
+router.get('/details/', (req, res) => {
+  const movieId = req.body.id
+  console.log(movieId);
   const sqlQuery = `SELECT "movies"."id", 
                     "movies"."title", 
                     "movies"."poster",
