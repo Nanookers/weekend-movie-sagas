@@ -14,13 +14,9 @@ function MovieList() {
     }, []);
 
     const handlePosterClick = (movie) => {
-        console.log('hi');
-        dispatch({
-            type: 'SAGA_FETCH_MOVIE_ DESCRIPTION',
-            payload: movie.id
-        })
-        
+        history.push(`/details/${movie.id}`)
         // history.push(`/details`)
+        
     }
 
     return (
@@ -29,7 +25,7 @@ function MovieList() {
             <section className="movies">
                 {movies.map(movie => {
                     return (
-                        <div  onClick={() => handlePosterClick(movie)} key={movie.id} >
+                        <div  key={movie.id} onClick={() => handlePosterClick(movie)}  >
                             <h3>{movie.title}</h3>
                             <img src={movie.poster} alt={movie.title}/>
                         </div>

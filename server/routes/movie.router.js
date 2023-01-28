@@ -17,9 +17,8 @@ router.get('/', (req, res) => {
 });
 
 // GET for movie description
-router.get('/details/', (req, res) => {
-  const movieId = req.body.id
-  console.log(movieId);
+router.get('/:id', (req, res) => {
+  
   const sqlQuery = `SELECT "movies"."id", 
                     "movies"."title", 
                     "movies"."poster",
@@ -30,7 +29,7 @@ router.get('/details/', (req, res) => {
                       JOIN "movies_genres" ON "movies"."id" = "movies_genres"."movie_id"
                       JOIN "genres" ON "movies_genres"."genre_id" = "genres"."id"
                       WHERE "movies"."id" = $1;`
-  pool.query( sqlQuery, [movieId] )
+  pool.query( sqlQuery, [req.params.id] )
     .then((result) => {
       console.log(result.rows);
       res.send(result.rows);

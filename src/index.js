@@ -17,7 +17,7 @@ const sagaMiddleware = createSagaMiddleware();
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies)
-    yield takeEvery('SAGA_FETCH_MOVIE_ DESCRIPTION', fetchMovieDescription)
+    yield takeEvery('SAGA_FETCH_MOVIE_DESCRIPTION', fetchMovieDescription)
 }
 
 function* fetchAllMovies() {
@@ -32,19 +32,18 @@ function* fetchAllMovies() {
     }
         
 }
+
 function* fetchMovieDescription(action) {
     // GET movie description from db
-
+    console.log(action.payload);
     try{
-        const idToSearch = action.payload;
         const response = yield axios({
             method: 'GET',
-            url: '/api/movie/details/',
-            data: {idToSearch}
+            url: `api/movie/${action.payload}`,
         })
         yield put({
           type: 'SET_DESCRIPTION_REDUCER', 
-          payload: response 
+          payload: response.data
         })
     }catch (error){
         console.log(`fetch gif broke GET saga index`, error);

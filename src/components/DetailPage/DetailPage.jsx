@@ -1,28 +1,40 @@
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 function DetailPage(){
 
     const dispatch = useDispatch();
+
     const movieDescription = useSelector (store => store.movieDescription) 
 
-    useEffect(() => {
-        getMovieDescription()
-    })
+    const params = useParams();
 
     console.log(movieDescription);
 
-    // 1. DISPATCH being sent to ROOTSAGA
-    const getMovieDescription = () => {
+    useEffect(() => {
+        const movieID = params.id;
+        console.log(movieID);
         dispatch({
-            type: 'SAGA_FETCH_MOVIE_ DESCRIPTION',
-            payload: `1`
-        })
-    }
+            type: 'SAGA_FETCH_MOVIE_DESCRIPTION',
+            payload: movieID
+        });
+
+    }, [params.id]);
 
     return (
-        <h1>Hi</h1>
+        <>
+            {
+                movieDescription.map(( movie,  index ) => {
+                    return(
+                        <div key={index}>
+                            <img src={movie.poster}/>
+                            <p>{movie.description}</p>
+                        </div>
+                    )
+                })
+            }
+        </>
     )
 
 }
