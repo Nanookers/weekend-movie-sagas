@@ -28,13 +28,18 @@ function MovieList() {
             <section className="movies">
                 {movies.map(movie => {
                     return (
-                        <Grid item sm={2} >
+                        <Grid item sm={2} container spacing={2}  >
                             <div  key={movie.id} onClick={() => handlePosterClick(movie)}  >
                                 <h3>{movie.title}</h3>
-                                <Paper elevation={6} >
-                                <img src={movie.poster} alt={movie.title}/>
-                                </Paper>
-                            </div>
+                                    <Grid item xs="auto">
+                                        <Paper elevation={6} >
+                                            <CardMedia
+                                                component="img"
+                                                image={movie.poster}
+                                            />
+                                            </Paper>
+                                    </Grid>   
+                                </div>
                         </Grid>
                     );
                 })}

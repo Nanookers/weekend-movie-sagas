@@ -1,7 +1,7 @@
 import { useHistory, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Paper, Grid, Typography, CardMedia} from "@material-ui/core";
+import { Paper, Grid, Typography, CardMedia, Button} from "@material-ui/core";
 import './DetailPage.css';
 function DetailPage(){
 
@@ -40,7 +40,6 @@ function DetailPage(){
                                         <Paper elevation={6} >
                                         <CardMedia
                                             component="img"
-                                            sx={{ width: .75 }}
                                             image={movie.poster}
                                         />
                                         </Paper>
@@ -49,8 +48,8 @@ function DetailPage(){
                                 
                                 <Grid item xs={12} sm={6}>
                                     <Typography variant='body1'>{movie.description}</Typography>
-                                            <p className="genreText">{movie.genres}</p>
-                                            <button onClick={() => history.push('/')}>Back</button>
+                                            <p className="genreText">{`Genre: ${movie.genres} `}</p>
+                                            <Button onClick={() => history.push('/')}>Back</Button>
                                  </Grid>
                         
                                       

@@ -1,3 +1,4 @@
 .descriptionCard{
-    display: grid;
+    margin: 5em; 
+    justify-content: center;   
 }
