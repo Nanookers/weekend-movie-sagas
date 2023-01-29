@@ -1,7 +1,8 @@
 import { useHistory, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
+import { Paper, Grid, Typography, CardMedia} from "@material-ui/core";
+import './DetailPage.css';
 function DetailPage(){
 
     const dispatch = useDispatch();
@@ -24,7 +25,7 @@ function DetailPage(){
             type: 'SAGA_FETCH_MOVIE_DESCRIPTION',
             payload: movieID
         });
-        
+
     }, [paramater.id]);
 
 
@@ -33,11 +34,26 @@ function DetailPage(){
                 {
                     movieDescription.map(( movie,  index ) => {
                         return(
-                            <div key={index}>
-                                <img src={movie.poster}/>
-                                <p>{movie.description}</p>
-                                <p>{movie.genres}</p>
-                                <button onClick={() => history.push('/')}>Back</button>
+                            <div className="descriptionCard" key={index}>
+                                <Grid item xs={10} sm={3} >
+                                    <Grid item xs="auto">
+                                        <Paper elevation={6} >
+                                        <CardMedia
+                                            component="img"
+                                            sx={{ width: .75 }}
+                                            image={movie.poster}
+                                        />
+                                        </Paper>
+                                    </Grid>
+                                </Grid> 
+                                
+                                <Grid item xs={12} sm={6}>
+                                    <Typography variant='body1'>{movie.description}</Typography>
+                                            <p className="genreText">{movie.genres}</p>
+                                            <button onClick={() => history.push('/')}>Back</button>
+                                 </Grid>
+                        
+                                      
                             </div>
                         )
                     })

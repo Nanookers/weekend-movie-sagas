@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
+import { Paper, Grid, Typography, CardMedia} from "@material-ui/core";
 import './MovieList.css'
 
 function MovieList() {
@@ -27,11 +28,14 @@ function MovieList() {
             <section className="movies">
                 {movies.map(movie => {
                     return (
-                        <div  key={movie.id} onClick={() => handlePosterClick(movie)}  >
-                            <h3>{movie.title}</h3>
-                            <img src={movie.poster} alt={movie.title}/>
-                            
-                        </div>
+                        <Grid item sm={2} >
+                            <div  key={movie.id} onClick={() => handlePosterClick(movie)}  >
+                                <h3>{movie.title}</h3>
+                                <Paper elevation={6} >
+                                <img src={movie.poster} alt={movie.title}/>
+                                </Paper>
+                            </div>
+                        </Grid>
                     );
                 })}
             </section>
