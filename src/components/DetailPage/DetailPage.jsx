@@ -5,22 +5,27 @@ import { useSelector, useDispatch } from "react-redux";
 function DetailPage(){
 
     const dispatch = useDispatch();
-    const params = useParams();
+    const paramater = useParams();
     let history = useHistory();
 
     const movieDescription = useSelector (store => store.movieDescription) 
 
    
+    // Params accesses the value in  the route paramaters,
+    // and allows me to set a value in the payload based on what page I am on.
+    // So instead of fetching the description on the click in movielist,
+    // I grab it in useEffect based on route parameters.
 
     useEffect(() => {
-        const movieID = params.id;
+        const movieID = paramater.id;
+        
         console.log(movieID);
         dispatch({
             type: 'SAGA_FETCH_MOVIE_DESCRIPTION',
             payload: movieID
         });
-
-    }, [params.id]);
+        
+    }, [paramater.id]);
 
 
     return (

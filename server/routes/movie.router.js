@@ -19,6 +19,8 @@ router.get('/', (req, res) => {
 // GET for movie description
 router.get('/:id', (req, res) => {
   
+  // Array_Agg limited all the reprints of movie posters (instead of one per genre)
+  // the array is a bit difficult to work with, but it's functional.
   const sqlQuery = `SELECT  
                     "movies"."title", 
                       "movies"."poster",

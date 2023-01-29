@@ -10,13 +10,14 @@ function MovieList() {
     const movies = useSelector(store => store.movies);
 
     useEffect(() => {
+        // Fetch all  movies
         dispatch({ type: 'FETCH_MOVIES' });
+        // Clear state for the single movie description
         dispatch({ type: 'CLEAR_MOVIE_DESCRIPTION', payload: [] })
     }, []);
 
     const handlePosterClick = (movie) => {
         history.push(`/details/${movie.id}`)
-        // history.push(`/details`)
         
     }
 
