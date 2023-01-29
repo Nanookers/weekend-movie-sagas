@@ -1,9 +1,12 @@
 import {HashRouter as Router, Route} from 'react-router-dom';
+
 import './App.css';
 import MovieList from '../MovieList/MovieList'
 import DetailPage from '../DetailPage/DetailPage';
 
 function App() {
+ 
+
   return (
     <div className="App">
       <h1>The Movies Saga!</h1>

@@ -11,6 +11,7 @@ function MovieList() {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
+        dispatch({ type: 'CLEAR_MOVIE_DESCRIPTION', payload: [] })
     }, []);
 
     const handlePosterClick = (movie) => {
@@ -28,6 +29,7 @@ function MovieList() {
                         <div  key={movie.id} onClick={() => handlePosterClick(movie)}  >
                             <h3>{movie.title}</h3>
                             <img src={movie.poster} alt={movie.title}/>
+                            
                         </div>
                     );
                 })}

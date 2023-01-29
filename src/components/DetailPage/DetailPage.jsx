@@ -1,16 +1,16 @@
 import { useHistory, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 function DetailPage(){
 
     const dispatch = useDispatch();
+    const params = useParams();
+    let history = useHistory();
 
     const movieDescription = useSelector (store => store.movieDescription) 
 
-    const params = useParams();
-
-    console.log(movieDescription);
+   
 
     useEffect(() => {
         const movieID = params.id;
@@ -22,18 +22,21 @@ function DetailPage(){
 
     }, [params.id]);
 
+
     return (
         <>
-            {
-                movieDescription.map(( movie,  index ) => {
-                    return(
-                        <div key={index}>
-                            <img src={movie.poster}/>
-                            <p>{movie.description}</p>
-                        </div>
-                    )
-                })
-            }
+                {
+                    movieDescription.map(( movie,  index ) => {
+                        return(
+                            <div key={index}>
+                                <img src={movie.poster}/>
+                                <p>{movie.description}</p>
+                                <p>{movie.genres}</p>
+                                <button onClick={() => history.push('/')}>Back</button>
+                            </div>
+                        )
+                    })
+                }
         </>
     )
 

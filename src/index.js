@@ -42,7 +42,7 @@ function* fetchMovieDescription(action) {
             url: `api/movie/${action.payload}`,
         })
         yield put({
-          type: 'SET_DESCRIPTION_REDUCER', 
+          type: 'SET_REDUCER_WITH_SINGLE_MOVIE', 
           payload: response.data
         })
     }catch (error){
@@ -62,8 +62,10 @@ const movies = (state = [], action) => {
 
 const movieDescription = (state = [], action) => {
     switch (action.type) {
-        case 'SET_DESCRIPTION_REDUCER':
+        case 'SET_REDUCER_WITH_SINGLE_MOVIE':
             return action.payload;
+        case 'CLEAR_MOVIE_DESCRIPTION':
+            return action.payload
         default:
             return state;
     }
